@@ -11,12 +11,18 @@ var $ = function (id) {
     return window.document.getElementById(id);
 };
 
+function numberOfEmployees() {
+    "use strict";
+    var totalEmployees = window.document.getElementsByClassName("numberOfEmployees");
+    totalEmployees[0].firstChild.nodeValue = (($("employeesData").rows.length) - 1);
+}
+
 function displayEmployee(employees) {
     "use strict";
     var html = "";
     employees.forEach(function (employee) {
         html += "<tr><td>" + employee[0] + "</td><td>" + employee[1] + "</td><td>"
-                + employee[2] + "</td><td><input type='button' name='delete' value ='Delete'></td></tr>";
+                + employee[2] + "</td><td><input type='button' class='button' name='delete' value ='Delete'></td></tr>";
     });
     $("employeesData").innerHTML += html;
     $("employeeName").focus();
@@ -26,10 +32,10 @@ function addEmployee() {
     var html = "";
 
     html = "<tr><td>" + $("employeeName").value + "</td><td>" + $("employeeTitle").value
-            + "</td><td>" + $("employeeExtension").value + "</td><td>"
-            + "</td><td><input type='button' name='delete' value ='Delete'></td></tr>";
+            + "</td><td>" + $("employeeExtension").value
+            + "</td><td><input type='button' class='button' name='delete' value ='Delete'></td></tr>";
     $("employeesData").innerHTML += html;
-
+    numberOfEmployees();
 }
 var deleteEmployee = function (e) {
     "use strict";
@@ -40,6 +46,7 @@ var deleteEmployee = function (e) {
         }
     }
     $("employeesData").deleteRow(rowNum);
+    numberOfEmployees();
 };
 
 var validateData = function () {
@@ -95,7 +102,7 @@ window.addEventListener("load", function () {
     "use strict";
     var deleteButtons, i;
     main();
-
+    numberOfEmployees();
     $("addEmployee").addEventListener("click", validateData);
 
     deleteButtons = window.document.getElementsByName("delete");
