@@ -27,6 +27,7 @@ function displayEmployee(employees) {
     $("employeesData").innerHTML += html;
     $("employeeName").focus();
 }
+
 function addEmployee() {
     "use strict";
     var html = "";
@@ -37,6 +38,7 @@ function addEmployee() {
     $("employeesData").innerHTML += html;
     numberOfEmployees();
 }
+
 var deleteEmployee = function (e) {
     "use strict";
     var i, rowNum;
@@ -84,7 +86,6 @@ var validateData = function () {
     }
 };
 
-
 function main() {
     "use strict";
     var employees;
@@ -97,12 +98,10 @@ function main() {
     displayEmployee(employees);
 }
 
-
 window.addEventListener("load", function () {
     "use strict";
     var deleteButtons, i;
     main();
-    numberOfEmployees();
     $("addEmployee").addEventListener("click", validateData);
 
     deleteButtons = window.document.getElementsByName("delete");
